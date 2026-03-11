@@ -188,6 +188,46 @@ export type TechCategory = typeof TECH_CATEGORIES[number];
 
 
 
+export const CERTIFICATIONS = [
+  {
+    title: 'Shadow Code Competition',
+    issuer: '42 Amman',
+    date: '2024',
+    highlight: '1st Place',
+  },
+  {
+    title: 'Foundational C# with Microsoft',
+    issuer: 'freeCodeCamp × Microsoft',
+    date: '2024',
+    link: '',
+  },
+  {
+    title: 'Foundations of Programming',
+    issuer: 'ProgrammingAdvices',
+    date: '2023',
+  },
+  {
+    title: 'Database Level 1 — SQL Concepts & Practices',
+    issuer: 'ProgrammingAdvices',
+    date: '2023',
+  },
+  {
+    title: 'Algorithms & Problem Solving Level 1',
+    issuer: 'ProgrammingAdvices',
+    date: '2023',
+  },
+  {
+    title: 'OOP — Object-Oriented Programming',
+    issuer: 'ProgrammingAdvices',
+    date: '2024',
+  },
+  {
+    title: 'Data Structures Level 1',
+    issuer: 'ProgrammingAdvices',
+    date: '2024',
+  },
+];
+
 export const LANGUAGE_COLORS: Record<string, string> = {
   C: '#555555',
   'C++': '#f34b7d',
