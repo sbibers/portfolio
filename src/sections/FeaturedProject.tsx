@@ -12,7 +12,7 @@ const FEATURES = [
   { icon: Globe, label: 'Live Demo', description: 'Try it out at andary.netlify.app' },
 ];
 
-const TECH_STACK = ['React', 'Vite', 'Tailwind CSS', 'ASP.NET', 'PostgreSQL', 'Docker', 'Nginx'];
+const TECH_STACK = ['React', 'Vite', 'Tailwind CSS', 'PostgreSQL', 'Docker', 'Nginx'];
 
 export default function FeaturedProject() {
   const [ref, visible] = useInView(0.1);

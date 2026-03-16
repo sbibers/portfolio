@@ -47,9 +47,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     icon: 'Globe',
     skills: [
       { name: 'React', level: 85 },
-      { name: 'Next.js', level: 75 },
       { name: 'Vite', level: 80 },
-      { name: 'ASP.NET', level: 75 },
       { name: 'HTML / CSS', level: 85 },
       { name: 'Tailwind CSS', level: 85 },
     ],
@@ -169,9 +167,7 @@ export const TECH_ITEMS: TechItem[] = [
 
   // Tools & Frameworks
   { name: 'React',      iconUrl: `${DI}/react/react-original.svg`,                 category: 'Tools & Frameworks' },
-  { name: 'Next.js',    iconUrl: `${DI}/nextjs/nextjs-original.svg`,               category: 'Tools & Frameworks' },
   { name: 'Vite',       iconUrl: `${DI}/vitejs/vitejs-original.svg`,               category: 'Tools & Frameworks' },
-  { name: '.NET',       iconUrl: `${DI}/dot-net/dot-net-original.svg`,             category: 'Tools & Frameworks' },
   { name: 'Tailwind',   iconUrl: `${DI}/tailwindcss/tailwindcss-original.svg`,     category: 'Tools & Frameworks' },
   { name: 'HTML5',      iconUrl: `${DI}/html5/html5-original.svg`,                 category: 'Tools & Frameworks' },
   { name: 'CSS3',       iconUrl: `${DI}/css3/css3-original.svg`,                   category: 'Tools & Frameworks' },
