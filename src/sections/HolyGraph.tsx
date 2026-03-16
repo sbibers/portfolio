@@ -19,14 +19,14 @@ interface GraphNode {
 
 // ── Your 42 projects data (matching real holy graph structure) ──
 const GRAPH_NODES: GraphNode[] = [
-  // Circle 0 — Foundation
+  // Circle 0, Foundation
   {
     id: 'libft',
     name: 'Libft',
     circle: 0,
     status: 'completed',
     grade: 125,
-    description: 'Custom C library reimplementing standard functions, including ft_printf and get_next_line — the foundation for all 42 projects.',
+    description: 'Custom C library reimplementing standard functions, including ft_printf and get_next_line, the foundation for all 42 projects.',
     language: 'C',
     github: 'https://github.com/sbibers/libft',
     dependencies: [],
@@ -37,7 +37,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'Born2beRoot',
     circle: 1,
     status: 'completed',
-    description: 'System administration — setting up a virtual machine with strict security rules.',
+    description: 'System administration, setting up a virtual machine with strict security rules.',
     language: 'Shell',
     dependencies: ['libft'],
   },
@@ -47,7 +47,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'Pipex',
     circle: 2,
     status: 'completed',
-    description: 'Recreating Unix pipe behavior — handling multiple commands and redirections.',
+    description: 'Recreating Unix pipe behavior, handling multiple commands and redirections.',
     language: 'C',
     github: 'https://github.com/sbibers/pipex',
     dependencies: ['libft'],
@@ -57,7 +57,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'so_long',
     circle: 2,
     status: 'completed',
-    description: '2D game with MiniLibX — tile-based map, collectibles, and pathfinding.',
+    description: '2D game with MiniLibX, tile-based map, collectibles, and pathfinding.',
     language: 'C',
     github: 'https://github.com/sbibers/so_long',
     dependencies: ['libft'],
@@ -67,7 +67,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'Push_swap',
     circle: 2,
     status: 'completed',
-    description: 'Sorting algorithm challenge — sort a stack using the minimum number of operations.',
+    description: 'Sorting algorithm challenge, sort a stack using the minimum number of operations.',
     language: 'C',
     github: 'https://github.com/sbibers/push_swap',
     dependencies: ['libft'],
@@ -88,7 +88,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'Philosophers',
     circle: 3,
     status: 'completed',
-    description: 'Dining Philosophers problem — threads, mutexes, and deadlock prevention.',
+    description: 'Dining Philosophers problem, threads, mutexes, and deadlock prevention.',
     language: 'C',
     github: 'https://github.com/sbibers/philosophers',
     dependencies: ['pipex'],
@@ -99,7 +99,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'Cub3D',
     circle: 4,
     status: 'completed',
-    description: 'Raycasting engine inspired by Wolfenstein 3D — rendering a 3D maze from a 2D map.',
+    description: 'Raycasting engine inspired by Wolfenstein 3D, rendering a 3D maze from a 2D map.',
     language: 'C',
     github: 'https://github.com/sbibers/cub3d',
     dependencies: ['minishell'],
@@ -109,7 +109,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'CPP Modules',
     circle: 4,
     status: 'completed',
-    description: 'C++ fundamentals from 00 to 09 — OOP, polymorphism, templates, STL, Bitcoin Exchange, RPN Calculator, Merge-Insert Sort.',
+    description: 'C++ fundamentals from 00 to 09, OOP, polymorphism, templates, STL, Bitcoin Exchange, RPN Calculator, Merge-Insert Sort.',
     language: 'C++',
     github: 'https://github.com/sbibers/cpp_modules',
     dependencies: ['minishell'],
@@ -119,7 +119,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'NetPractice',
     circle: 4,
     status: 'completed',
-    description: 'Networking fundamentals — configuring small networks with TCP/IP addressing.',
+    description: 'Networking fundamentals, configuring small networks with TCP/IP addressing.',
     language: 'Networking',
     dependencies: ['minishell'],
   },
@@ -129,7 +129,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'Inception',
     circle: 5,
     status: 'completed',
-    description: 'Docker infrastructure — setting up a complete web stack with Docker Compose, Nginx, WordPress, and MariaDB.',
+    description: 'Docker infrastructure, setting up a complete web stack with Docker Compose, Nginx, WordPress, and MariaDB.',
     language: 'Docker',
     github: 'https://github.com/sbibers/inception',
     dependencies: ['cub3d', 'cpp_modules', 'netpractice'],
@@ -139,7 +139,7 @@ const GRAPH_NODES: GraphNode[] = [
     name: 'Webserv',
     circle: 5,
     status: 'completed',
-    description: 'HTTP server implementation — handling requests, responses, and CGI.',
+    description: 'HTTP server implementation, handling requests, responses, and CGI.',
     language: 'C++',
     dependencies: ['cpp_modules', 'netpractice'],
   },
@@ -316,7 +316,7 @@ export default function HolyGraph() {
       <div id="holygraph" className="scroll-mt-20">
         <SectionHeading
           title="42 Holy Graph"
-          subtitle="My journey through the 42 curriculum — circle by circle"
+          subtitle="My journey through the 42 curriculum, circle by circle"
         />
 
         <div ref={ref}>
@@ -326,7 +326,7 @@ export default function HolyGraph() {
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-400">
-                Overall Progress — <span className="text-white font-semibold">{completedCount}/{totalCount}</span> projects
+                Overall Progress, <span className="text-white font-semibold">{completedCount}/{totalCount}</span> projects
               </span>
               <span className="text-sm font-mono text-primary-400">{progressPct}%</span>
             </div>
@@ -368,7 +368,7 @@ export default function HolyGraph() {
             })}
           </div>
 
-          {/* Graph — rows by circle */}
+          {/* Graph, rows by circle */}
           <div className="space-y-6">
             {filteredCircles.map((nodes, circleIdx) => {
               if (nodes.length === 0) return null;

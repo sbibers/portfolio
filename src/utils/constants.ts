@@ -10,9 +10,9 @@ export const PERSONAL_INFO = {
   linkedin: 'https://www.linkedin.com/in/salambaybars/',
   location: 'Zarqa, Jordan',
   cvUrl: '/Salam-Baybars-CV.pdf',
-  bio: `I'm a CS student at the University of Islamic Sciences and a 42 Amman graduate — part of the first team to complete the Core Curriculum. My expertise spans systems programming, networking, algorithms, and full-stack web development.`,
+  bio: `I'm a CS student at the University of Islamic Sciences and a 42 Amman graduate, part of the first team to complete the Core Curriculum. My expertise spans systems programming, networking, algorithms, and full-stack web development.`,
   aboutParagraphs: [
-    `As a Computer Science student and 42 Amman graduate, I bring a unique blend of academic foundation and intensive, project-based learning. At 42, I was part of the first team to complete the entire Core Curriculum — mastering complex concepts through peer-to-peer collaboration, code review, and real-world challenges.`,
+    `As a Computer Science student and 42 Amman graduate, I bring a unique blend of academic foundation and intensive, project-based learning. At 42, I was part of the first team to complete the entire Core Curriculum, mastering complex concepts through peer-to-peer collaboration, code review, and real-world challenges.`,
     `My expertise spans systems programming in C/C++, where I've built custom shells, raycasting engines, and sorting algorithm optimizers. I'm equally passionate about full-stack web development, having created real-time multiplayer platforms with React, ASP.NET, and PostgreSQL, as well as Docker-based infrastructure.`,
     `I specialize in systems programming, networking, algorithms, and both backend and frontend development. I'm always pushing boundaries and seeking new technologies to master.`,
   ],
@@ -89,7 +89,7 @@ export const PERSONAL_PROJECTS = [
   {
     title: 'World Clock App',
     description:
-      'An elegant, lightweight web application combining a real-time world clock, stopwatch with lap tracking, countdown timer with audio notifications, and session history — all built with vanilla JavaScript and zero dependencies.',
+      'An elegant, lightweight web application combining a real-time world clock, stopwatch with lap tracking, countdown timer with audio notifications, and session history, all built with vanilla JavaScript and zero dependencies.',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Intl API', 'localStorage'],
     github: 'https://github.com/sbibers/world-clock-app',
     live: 'https://sbibers.github.io/world-clock-app/',
@@ -121,7 +121,7 @@ export const FEATURED_PROJECTS = [
   {
     title: 'Push Swap',
     description:
-      'Sorting algorithm optimization challenge — sorting a stack using the minimum number of operations with efficient algorithmic strategies.',
+      'Sorting algorithm optimization challenge, sorting a stack using the minimum number of operations with efficient algorithmic strategies.',
     technologies: ['C', 'Algorithms', 'Sorting'],
     github: 'https://github.com/sbibers/push_swap',
   },
@@ -142,7 +142,7 @@ export const FEATURED_PROJECTS = [
   {
     title: 'Libft',
     description:
-      'Custom C library reimplementing standard functions, including ft_printf and get_next_line — the foundation for all 42 projects.',
+      'Custom C library reimplementing standard functions, including ft_printf and get_next_line, the foundation for all 42 projects.',
     technologies: ['C', 'Makefile', 'Library'],
     github: 'https://github.com/sbibers/libft',
   },
@@ -207,7 +207,7 @@ export const CERTIFICATIONS = [
     date: '2023',
   },
   {
-    title: 'Database Level 1 — SQL Concepts & Practices',
+    title: 'Database Level 1, SQL Concepts & Practices',
     issuer: 'ProgrammingAdvices',
     date: '2023',
   },
@@ -217,7 +217,7 @@ export const CERTIFICATIONS = [
     date: '2023',
   },
   {
-    title: 'OOP — Object-Oriented Programming',
+    title: 'OOP, Object-Oriented Programming',
     issuer: 'ProgrammingAdvices',
     date: '2024',
   },

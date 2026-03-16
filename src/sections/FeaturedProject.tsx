@@ -22,7 +22,7 @@ export default function FeaturedProject() {
       <div id="featured" className="scroll-mt-20">
         <SectionHeading
           title="ft_transcendence"
-          subtitle="The 42 capstone project — a full-stack real-time multiplayer trivia platform for Tawjihi students"
+          subtitle="The 42 capstone project, a full-stack real-time multiplayer trivia platform for Tawjihi students"
         />
 
         <div
@@ -38,7 +38,7 @@ export default function FeaturedProject() {
                   <span className="h-1.5 w-1.5 rounded-full bg-primary-400" />
                   42 Capstone Project
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">Andary — Tawjihi Trivia Platform</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">Andary, Tawjihi Trivia Platform</h3>
                 <p className="mt-2 text-gray-400 leading-relaxed max-w-2xl">
                   A full-stack real-time multiplayer trivia application designed for Tawjihi students.
                   Features live competitive gameplay, comprehensive user profiles, and full multilingual support
