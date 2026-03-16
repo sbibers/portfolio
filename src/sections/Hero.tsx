@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Download, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { PERSONAL_INFO } from '../utils/constants';
+import cvFile from '../assets/sbibers_CV.pdf';
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
@@ -88,6 +89,23 @@ export default function Hero() {
             <Mail size={16} />
             Contact Me
           </button>
+          <a
+            href={cvFile}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl border border-primary-500/40 px-7 py-3.5 font-semibold text-primary-300 hover:border-primary-400 hover:text-primary-200 hover:bg-primary-500/10 transition-all duration-300"
+          >
+            <FileText size={16} />
+            Open CV
+          </a>
+          <a
+            href={cvFile}
+            download="sbibers_CV.pdf"
+            className="inline-flex items-center gap-2 rounded-xl border border-gray-700 px-7 py-3.5 font-semibold text-gray-300 hover:border-primary-500/50 hover:text-white hover:bg-white/5 transition-all duration-300"
+          >
+            <Download size={16} />
+            Download CV
+          </a>
         </div>
 
         {/* Social icons */}
