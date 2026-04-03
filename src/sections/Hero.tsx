@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowDown, Download, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { PERSONAL_INFO } from '../utils/constants';
-import cvFile from '../assets/sbibers_CV.pdf';
+import cvFile from '../assets/Salam_Baybars_CV_2026.pdf';
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
@@ -100,7 +100,7 @@ export default function Hero() {
           </a>
           <a
             href={cvFile}
-            download="sbibers_CV.pdf"
+            download="Salam_Baybars_CV_2026.pdf"
             className="inline-flex items-center gap-2 rounded-xl border border-gray-700 px-7 py-3.5 font-semibold text-gray-300 hover:border-primary-500/50 hover:text-white hover:bg-white/5 transition-all duration-300"
           >
             <Download size={16} />
