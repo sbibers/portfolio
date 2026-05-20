@@ -35,7 +35,13 @@ function TechCard({
     >
       <div className="relative flex flex-col items-center gap-4 text-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/80 p-3 shadow-[0_18px_40px_rgba(0,0,0,0.28)] transition-all duration-300 group-hover:scale-110 group-hover:rotate-[-4deg]">
-          <img src={iconUrl} alt={name} className="h-full w-full object-contain" loading="lazy" />
+          <img
+            src={iconUrl}
+            alt={name}
+            className="h-full w-full object-contain"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div>
           <p className="text-sm font-semibold text-white transition-colors group-hover:text-cyan-100">

@@ -231,7 +231,7 @@ function NodeCard({
 function NodeDetail({ node, onClose }: { node: GraphNode; onClose: () => void }) {
   const s = STATUS_STYLES[node.status];
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-[2px] md:backdrop-blur-sm" onClick={onClose}>
       <div
         className={`relative max-w-md w-full rounded-2xl border ${s.border} bg-surface-900 p-6 shadow-2xl`}
         onClick={(e) => e.stopPropagation()}

@@ -40,10 +40,21 @@ const profileHighlights = [
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
+  const [allowParallax, setAllowParallax] = useState(false);
 
   useEffect(() => {
     const t = window.setTimeout(() => setLoaded(true), 140);
     return () => window.clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const query = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)');
+    const update = () => setAllowParallax(query.matches);
+
+    update();
+    query.addEventListener('change', update);
+
+    return () => query.removeEventListener('change', update);
   }, []);
 
   const scrollTo = (id: string) => {
@@ -53,31 +64,35 @@ export default function Hero() {
   const parallaxStyle = useMemo(
     () =>
       ({
-        '--mx': `${pointer.x}px`,
-        '--my': `${pointer.y}px`,
+        '--mx': allowParallax ? `${pointer.x}px` : '0px',
+        '--my': allowParallax ? `${pointer.y}px` : '0px',
       }) as React.CSSProperties,
-    [pointer]
+    [allowParallax, pointer]
   );
 
   return (
     <section
       id="hero"
       className="relative min-h-screen overflow-hidden pt-28 md:pt-32"
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 18;
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 18;
-        setPointer({ x, y });
-      }}
-      onMouseLeave={() => setPointer({ x: 0, y: 0 })}
+      onMouseMove={
+        allowParallax
+          ? (e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = ((e.clientX - rect.left) / rect.width - 0.5) * 18;
+              const y = ((e.clientY - rect.top) / rect.height - 0.5) * 18;
+              setPointer({ x, y });
+            }
+          : undefined
+      }
+      onMouseLeave={allowParallax ? () => setPointer({ x: 0, y: 0 }) : undefined}
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="hero-backdrop absolute inset-0 opacity-90" />
         <div className="hero-grid absolute inset-0 opacity-35" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_36%)]" />
-        <div className="absolute left-1/2 top-24 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-primary-500/14 blur-[120px] animate-pulse-glow" />
-        <div className="absolute right-[-6rem] top-[26%] h-72 w-72 rounded-full bg-cyan-400/12 blur-[120px] animate-float-slow" />
-        <div className="absolute bottom-[-8rem] left-[-4rem] h-96 w-96 rounded-full bg-primary-400/10 blur-[150px] animate-drift" />
+        <div className="absolute left-1/2 top-24 hidden h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-primary-500/14 blur-[120px] animate-pulse-glow md:block" />
+        <div className="absolute right-[-6rem] top-[26%] hidden h-72 w-72 rounded-full bg-cyan-400/12 blur-[120px] animate-float-slow md:block" />
+        <div className="absolute bottom-[-8rem] left-[-4rem] hidden h-96 w-96 rounded-full bg-primary-400/10 blur-[150px] animate-drift lg:block" />
       </div>
 
       <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-4 pb-16 sm:px-6 lg:grid-cols-[1.04fr_0.96fr] lg:px-8">
@@ -178,10 +193,10 @@ export default function Hero() {
           }`}
           style={parallaxStyle}
         >
-          <div className="absolute -inset-6 rounded-[2rem] bg-primary-500/10 blur-3xl animate-pulse-glow" />
+          <div className="absolute -inset-6 hidden rounded-[2rem] bg-primary-500/10 blur-3xl animate-pulse-glow md:block" />
           <div className="mouse-parallax relative">
-            <div className="absolute left-[8%] top-[7%] h-20 w-20 rounded-full border border-white/10 bg-white/5 blur-[1px] animate-float" />
-            <div className="absolute right-[12%] bottom-[11%] h-16 w-16 rounded-full border border-cyan-300/20 bg-cyan-300/10 animate-drift" />
+            <div className="absolute left-[8%] top-[7%] hidden h-20 w-20 rounded-full border border-white/10 bg-white/5 blur-[1px] animate-float md:block" />
+            <div className="absolute right-[12%] bottom-[11%] hidden h-16 w-16 rounded-full border border-cyan-300/20 bg-cyan-300/10 animate-drift md:block" />
 
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-4 shadow-[0_34px_110px_rgba(0,0,0,0.5)] glass-strong sm:p-5">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_36%),linear-gradient(135deg,rgba(99,102,241,0.08),rgba(34,211,238,0.05),transparent_60%)]" />
@@ -292,7 +307,7 @@ export default function Hero() {
 
       <button
         onClick={() => scrollTo('#about')}
-        className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-gray-500 transition-colors hover:text-gray-300"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-gray-500 transition-colors hover:text-gray-300 md:flex"
         aria-label="Scroll to about section"
       >
         <span>Scroll</span>

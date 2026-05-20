@@ -392,6 +392,144 @@ img {
   transition: transform 160ms linear;
 }
 
+@supports (content-visibility: auto) {
+  .section-wrapper {
+    content-visibility: auto;
+    contain-intrinsic-size: 760px;
+  }
+}
+
+.section-lazy-placeholder {
+  min-height: 18rem;
+}
+
+/* ── Mobile performance profile ─────────────────────────────── */
+@media (max-width: 767px) {
+  body {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12), transparent 34%),
+      radial-gradient(circle at 100% 18%, rgba(34, 211, 238, 0.08), transparent 28%),
+      linear-gradient(180deg, #03050d 0%, #050816 52%, #04060d 100%);
+  }
+
+  .text-gradient {
+    animation: none;
+    background-size: 100% auto;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 16px rgba(99, 102, 241, 0.18);
+  }
+
+  .glass,
+  .glass-strong {
+    backdrop-filter: blur(8px) saturate(1.12);
+    -webkit-backdrop-filter: blur(8px) saturate(1.12);
+    background: rgba(7, 11, 22, 0.86);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 14px 36px rgba(0, 0, 0, 0.28);
+  }
+
+  .section-frame {
+    border-radius: 1.4rem;
+    background: rgba(8, 12, 24, 0.76);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 14px 38px rgba(0, 0, 0, 0.24);
+  }
+
+  .hero-backdrop {
+    background:
+      radial-gradient(circle at 50% 12%, rgba(99, 102, 241, 0.16), transparent 38%),
+      radial-gradient(circle at 90% 30%, rgba(34, 211, 238, 0.08), transparent 32%);
+  }
+
+  .hero-grid {
+    background-size: 120px 120px;
+    opacity: 0.12 !important;
+  }
+
+  .surface-grid {
+    background-size: 120px 120px;
+    opacity: 0.12 !important;
+  }
+
+  .surface-noise,
+  .float-orb,
+  .float-orb::after,
+  .shine-line::after,
+  .section-shell::after {
+    display: none !important;
+  }
+
+  .section-shell::before {
+    opacity: 0.48;
+  }
+
+  .panel-3d {
+    perspective: 900px;
+  }
+
+  .mouse-parallax {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .tilt-card,
+  .depth-lift {
+    transform-style: flat;
+    transition-duration: 180ms;
+  }
+
+  .tilt-card:hover,
+  .depth-lift:hover {
+    transform: none;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
+  }
+
+  .card-highlight::before {
+    display: none;
+  }
+
+  .shadow-float,
+  .glow-ring {
+    box-shadow:
+      0 0 0 1px rgba(129, 140, 248, 0.10),
+      0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  .reveal-up,
+  .reveal-down,
+  .skill-bar-fill {
+    animation-duration: 360ms;
+  }
+
+  .section-wrapper {
+    contain-intrinsic-size: 620px;
+  }
+
+  .section-lazy-placeholder {
+    min-height: 10rem;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .mouse-parallax {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .tilt-card:hover,
+  .depth-lift:hover {
+    transform: none;
+  }
+
+  .card-highlight:hover::before {
+    opacity: 0;
+  }
+}
+
 /* ── Motion preferences ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,

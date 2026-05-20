@@ -41,7 +41,7 @@ export default function Navbar() {
     <nav
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'border-b border-white/10 bg-slate-950/70 shadow-[0_18px_60px_rgba(0,0,0,0.38)] backdrop-blur-2xl'
+          ? 'border-b border-white/10 bg-slate-950/85 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur-md md:bg-slate-950/70 md:shadow-[0_18px_60px_rgba(0,0,0,0.38)] md:backdrop-blur-2xl'
           : 'bg-transparent'
       }`}
     >
@@ -112,7 +112,7 @@ export default function Navbar() {
           isOpen ? 'max-h-[34rem] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="border-t border-white/10 bg-slate-950/90 px-4 py-4 backdrop-blur-2xl lg:hidden">
+        <div className="border-t border-white/10 bg-slate-950/90 px-4 py-4 backdrop-blur-md lg:hidden">
           <div className="glass space-y-2 rounded-[1.75rem] border border-white/10 p-3">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.href.replace('#', '');
