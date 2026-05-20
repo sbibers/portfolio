@@ -84,14 +84,12 @@ function RecentActivity({ repos }: { repos: GitHubRepo[] }) {
     .sort((a, b) => new Date(b.pushed_at || b.updated_at).getTime() - new Date(a.pushed_at || a.updated_at).getTime())
     .slice(0, 5);
 
-  const timeAgo = (dateStr: string) => {
-    const diff = Date.now() - new Date(dateStr).getTime();
-    const days = Math.floor(diff / 86400000);
-    if (days === 0) return 'today';
-    if (days === 1) return '1 day ago';
-    if (days < 30) return `${days} days ago`;
-    const months = Math.floor(days / 30);
-    return months === 1 ? '1 month ago' : `${months} months ago`;
+  const formatDate = (dateStr: string) => {
+    return new Intl.DateTimeFormat('en', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(new Date(dateStr));
   };
 
   return (
@@ -115,7 +113,7 @@ function RecentActivity({ repos }: { repos: GitHubRepo[] }) {
                 Pushed to <span className="font-semibold">{repo.name}</span>
               </p>
               <p className="text-xs text-gray-500 mt-0.5">
-                {timeAgo(repo.pushed_at || repo.updated_at)}
+                {formatDate(repo.pushed_at || repo.updated_at)}
                 {repo.language && (
                   <span className="ml-2 inline-flex items-center gap-1">
                     <span
@@ -161,7 +159,32 @@ export default function GitHubSection() {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => { loadData(); }, []);
+  useEffect(() => {
+    let active = true;
+
+    Promise.all([fetchGitHubUser(), fetchGitHubRepos()])
+      .then(([u, r]) => {
+        if (!active) return;
+        setUser(u);
+        setRepos(r);
+      })
+      .catch((err) => {
+        if (!active) return;
+        console.error('GitHub API error:', err);
+        setError(
+          err.message?.includes('403')
+            ? 'GitHub API rate limit reached. Please try again in a few minutes.'
+            : 'Failed to load GitHub data. Please try again.'
+        );
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const langStats = getLanguageStats(repos);
   const topRepos = getTopRepos(repos, 4);
@@ -171,7 +194,7 @@ export default function GitHubSection() {
       <div id="github" className="scroll-mt-20">
         <SectionHeading
           title="GitHub Activity"
-          subtitle="My open source contributions and coding activity"
+          subtitle="Public repositories, languages, and recent activity from my GitHub profile."
         />
 
         {loading ? (

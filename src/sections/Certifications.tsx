@@ -12,7 +12,7 @@ export default function Certifications() {
       <div id="certifications" className="scroll-mt-20">
         <SectionHeading
           title="Certifications"
-          subtitle="Professional certifications and achievements"
+          subtitle="Courses, certificates, and achievements I have completed."
         />
 
         <div ref={ref} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

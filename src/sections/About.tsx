@@ -5,21 +5,21 @@ import { useInView } from '../hooks/useInView';
 import { PERSONAL_INFO } from '../utils/constants';
 
 const milestones = [
-  { icon: GraduationCap, label: 'Computer Science Student', detail: 'Building strong fundamentals in software and systems' },
-  { icon: Award, label: '42 Amman Graduate', detail: 'Project-driven learning, collaboration, and problem solving' },
+  { icon: GraduationCap, label: 'Computer Science Student', detail: 'Studying software fundamentals and computer systems' },
+  { icon: Award, label: '42 Amman Graduate', detail: 'Completed project-based training with C, Unix, and teamwork' },
   { icon: Code2, label: 'Core Stack', detail: 'C / C++, JavaScript, TypeScript, React, Linux, Docker, SQL' },
 ];
 
 const focusAreas = [
   {
     icon: Cpu,
-    title: 'Systems-first mindset',
-    text: 'I care about reliability, performance, and clear architecture.',
+    title: 'Systems programming',
+    text: 'I enjoy C/C++, Unix concepts, networking, and understanding how software behaves under the hood.',
   },
   {
     icon: LayoutGrid,
-    title: 'Polished product delivery',
-    text: 'I like interfaces that feel premium, focused, and intentional.',
+    title: 'Full-stack development',
+    text: 'I build React and TypeScript interfaces backed by practical databases, APIs, and deployment workflows.',
   },
 ];
 
@@ -31,8 +31,8 @@ export default function About() {
       <div id="about" className="scroll-mt-24">
         <SectionHeading
           kicker="01 / About"
-          title="A focused builder with systems depth"
-          subtitle="Short, direct, and professional — the way a premium portfolio should feel."
+          title="About me"
+          subtitle="I’m focused on systems programming, full-stack development, and learning by building."
         />
 
         <div

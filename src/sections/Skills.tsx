@@ -42,7 +42,7 @@ function TechCard({
             {name}
           </p>
           <p className="mt-1 text-[11px] uppercase tracking-[0.24em] text-gray-500">
-            Core tool
+            Used in projects
           </p>
         </div>
       </div>
@@ -102,8 +102,8 @@ export default function Skills() {
       <div id="skills" className="scroll-mt-24">
         <SectionHeading
           kicker="02 / Skills"
-          title="3D skill layers and technical depth"
-          subtitle="Clean categories, premium motion, and the stack I actually use."
+          title="Skills"
+          subtitle="Languages, tools, and platforms I use in projects, coursework, and 42 work."
         />
 
         <div
@@ -138,9 +138,9 @@ export default function Skills() {
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
-              { label: 'Low-level', value: 'C / C++', text: 'Systems, memory, and performance-oriented work' },
-              { label: 'Frontend', value: 'React / TS', text: 'Responsive interfaces with modern tooling' },
-              { label: 'DevOps', value: 'Docker / Linux', text: 'Containerized workflows and Linux-first habits' },
+              { label: 'Low-level', value: 'C / C++', text: 'Memory, processes, algorithms, and Unix-style programs' },
+              { label: 'Frontend', value: 'React / TS', text: 'Interfaces built with React, TypeScript, and Tailwind' },
+              { label: 'DevOps', value: 'Docker / Linux', text: 'Local environments, containers, and deployment basics' },
             ].map((item) => (
               <div
                 key={item.label}
@@ -156,24 +156,24 @@ export default function Skills() {
           <div className="section-frame mt-10 p-6">
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <Layers3 size={16} className="text-cyan-300" />
-              Skill depth
+              Current focus
             </div>
             <div className="mt-5 grid gap-4">
               {[
-                { label: 'Systems programming', value: 92 },
-                { label: 'Frontend development', value: 85 },
-                { label: 'Backend & databases', value: 80 },
+                { label: 'Systems programming', detail: 'C, C++, Unix, memory, and process control', level: 92 },
+                { label: 'Frontend development', detail: 'React, TypeScript, responsive UI, and state management', level: 85 },
+                { label: 'Backend & databases', detail: 'APIs, SQL, Dockerized services, and deployment basics', level: 80 },
               ].map((skill, index) => (
                 <div key={skill.label} className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
+                  <div className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between">
                     <span className="text-gray-300">{skill.label}</span>
-                    <span className="font-mono text-xs text-gray-500">{skill.value}%</span>
+                    <span className="text-xs leading-5 text-gray-500 sm:text-right">{skill.detail}</span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-slate-900/90">
                     <div
                       className="skill-bar-fill h-full rounded-full bg-gradient-to-r from-primary-500 via-primary-400 to-cyan-400"
                       style={{
-                        width: visible ? `${skill.value}%` : '0%',
+                        width: visible ? `${skill.level}%` : '0%',
                         animationDelay: `${index * 120}ms`,
                       }}
                     />

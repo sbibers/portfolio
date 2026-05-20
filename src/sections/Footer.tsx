@@ -16,7 +16,7 @@ export default function Footer() {
                 Salam Baybars
               </p>
               <p className="mt-3 max-w-sm text-sm leading-7 text-gray-400">
-                CS Student and 42 Amman graduate focused on systems programming and polished full-stack interfaces.
+                Computer Science student and 42 Amman graduate working with C/C++, React, Linux, Docker, and SQL.
               </p>
             </div>
 
@@ -57,7 +57,7 @@ export default function Footer() {
                 ))}
               </div>
               <p className="mt-4 text-xs leading-6 text-gray-500">
-                Open to internships, collaborations, and technically interesting opportunities.
+                Open to internships, project work, and technical roles.
               </p>
             </div>
           </div>

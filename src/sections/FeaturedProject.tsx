@@ -8,7 +8,7 @@ const FEATURES = [
   { icon: Shield, label: 'JWT & Google OAuth', description: 'Secure authentication with multiple sign-in options' },
   { icon: History, label: 'Game History & Friends', description: 'Track your progress and connect with other players' },
   { icon: Languages, label: 'Multilingual', description: 'Arabic (RTL), English, and Chinese language support' },
-  { icon: Palette, label: 'Dark / Light Themes', description: 'Seamless theme switching for comfortable use' },
+  { icon: Palette, label: 'Dark / Light Themes', description: 'Theme switching for light and dark mode' },
   { icon: Globe, label: 'Live Demo', description: 'Try it out at andary.netlify.app' },
 ];
 
@@ -41,7 +41,7 @@ export default function FeaturedProject() {
                 <h3 className="text-2xl md:text-3xl font-bold text-white">Andary, Tawjihi Trivia Platform</h3>
                 <p className="mt-2 text-gray-400 leading-relaxed max-w-2xl">
                   A full-stack real-time multiplayer trivia application designed for Tawjihi students.
-                  Features live competitive gameplay, comprehensive user profiles, and full multilingual support
+                  It includes live gameplay, user profiles, game history, friends, and multilingual support,
                   including Arabic RTL layout.
                 </p>
               </div>

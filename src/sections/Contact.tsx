@@ -85,8 +85,8 @@ export default function Contact() {
       <div id="contact" className="scroll-mt-24">
         <SectionHeading
           kicker="04 / Contact"
-          title="Clear, polished contact options"
-          subtitle="A simple way to reach me for internships, collaborations, and technical roles."
+          title="Contact"
+          subtitle="The best way to reach me for internships, project work, or technical roles."
         />
 
         <div
@@ -98,10 +98,10 @@ export default function Contact() {
           <div className="space-y-4">
             <div className="section-frame p-6">
               <p className="section-kicker">Direct contact</p>
-              <h3 className="mt-3 text-2xl font-bold text-white">Let’s build something solid.</h3>
+              <h3 className="mt-3 text-2xl font-bold text-white">Let’s talk.</h3>
               <p className="mt-3 text-sm leading-7 text-gray-400">
-                If you have a project, internship, or collaboration in mind, reach out through any
-                of the channels below or send a quick message.
+                If you have an internship, project, or role in mind, you can reach me through any
+                of the channels below.
               </p>
 
               <div className="mt-6 space-y-3">

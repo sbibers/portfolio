@@ -8,12 +8,12 @@ export const PERSONAL_INFO = {
   github: 'https://github.com/sbibers',
   githubUsername: 'sbibers',
   linkedin: 'https://www.linkedin.com/in/salambaybars/',
-  location: 'Zarqa, Jordan',
+  location: 'Amman, Jordan',
   cvUrl: '/Salam-Baybars-CV.pdf',
-  bio: `Computer Science student and 42 Amman graduate focused on systems programming, full-stack development, and clean, reliable software.`,
+  bio: `Computer Science student and 42 Amman graduate working on systems programming, full-stack development, and practical software.`,
   aboutParagraphs: [
-    `I’m a Computer Science student and 42 Amman graduate with a strong foundation in systems programming, web development, and problem solving.`,
-    `I build with C/C++, JavaScript, TypeScript, React, Linux, Docker, and SQL, and I enjoy turning complex technical ideas into polished products.`,
+    `I’m a Computer Science student and 42 Amman graduate with experience in C/C++, web development, Linux, Docker, and databases.`,
+    `I enjoy projects where I can work close to the system, understand constraints, and still build something useful for people to use.`,
   ],
 };
 
@@ -86,7 +86,7 @@ export const PERSONAL_PROJECTS = [
   {
     title: 'World Clock App',
     description:
-      'A lightweight productivity app with a world clock, stopwatch, countdown timer, and session history, built with vanilla JavaScript and zero dependencies.',
+      'A browser app with a world clock, stopwatch, countdown timer, and session history, built with vanilla JavaScript and zero dependencies.',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Intl API', 'localStorage'],
     github: 'https://github.com/sbibers/world-clock-app',
     live: 'https://sbibers.github.io/world-clock-app/',

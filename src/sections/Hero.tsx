@@ -33,8 +33,8 @@ const stackTags = ['C / C++', 'TypeScript', 'React', 'Linux', 'Docker', 'SQL'];
 
 const profileHighlights = [
   { label: 'Based in', value: PERSONAL_INFO.location },
-  { label: 'Status', value: 'Open to internships' },
-  { label: 'Builds', value: 'Reliable products' },
+  { label: 'Background', value: '42 Amman graduate' },
+  { label: 'Focus', value: 'Systems + full stack' },
 ];
 
 export default function Hero() {
@@ -86,7 +86,7 @@ export default function Hero() {
             loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          <p className="section-kicker text-cyan-200/80 reveal-down">Software Engineer Portfolio</p>
+          <p className="section-kicker text-cyan-200/80 reveal-down">Computer Science Student</p>
 
           <h1 className="mt-4 max-w-4xl text-5xl font-black text-white text-glow sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
             <span className="block">Salam</span>
@@ -214,11 +214,11 @@ export default function Hero() {
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-[0.22em] text-gray-500">Engineering Focus</p>
-                        <p className="mt-1 text-base font-semibold leading-6 text-white">Systems thinking for polished web products</p>
+                        <p className="mt-1 text-base font-semibold leading-6 text-white">Systems and full-stack work</p>
                       </div>
                     </div>
                     <p className="mt-4 text-sm leading-7 text-gray-400">
-                      I build reliable software with C/C++, JavaScript, TypeScript, React, Linux, Docker, and SQL.
+                      I work with C/C++, JavaScript, TypeScript, React, Linux, Docker, and SQL.
                     </p>
                   </div>
 
@@ -249,9 +249,9 @@ export default function Hero() {
                 <div className="mt-4 rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.055] p-4">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.22em] text-cyan-200/70">Portfolio Signal</p>
+                      <p className="text-xs uppercase tracking-[0.22em] text-cyan-200/70">Current Focus</p>
                       <p className="mt-2 text-sm leading-6 text-gray-300">
-                        Dark glass, measured motion, and a focused engineering story.
+                        Improving my systems fundamentals while building practical full-stack projects.
                       </p>
                     </div>
                     <div className="flex items-center gap-2 text-cyan-100">

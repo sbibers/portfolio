@@ -151,8 +151,8 @@ export default function Projects() {
       <div id="projects" className="scroll-mt-24">
         <SectionHeading
           kicker="03 / Projects"
-          title="Premium projects with depth"
-          subtitle="Selected work, presented like a high-end product portfolio."
+          title="Selected projects"
+          subtitle="A few projects that show my work across C/C++, web apps, infrastructure, and 42 coursework."
         />
 
         <div
@@ -189,7 +189,7 @@ export default function Projects() {
                 <p className="section-kicker">GitHub</p>
                 <h3 className="mt-2 text-2xl font-bold text-white">Recent repositories</h3>
                 <p className="mt-2 max-w-2xl text-sm leading-7 text-gray-400">
-                  A lightweight snapshot of recent activity with language signals and repo stats.
+                  Recent public repositories with language and activity details.
                 </p>
               </div>
               <a
