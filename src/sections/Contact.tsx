@@ -9,6 +9,7 @@ import {
   AlertCircle,
   Copy,
   Check,
+  ArrowRight,
 } from 'lucide-react';
 import SectionWrapper from '../components/SectionWrapper';
 import SectionHeading from '../components/SectionHeading';
@@ -52,90 +53,127 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setStatus('error');
+      window.setTimeout(() => setStatus('idle'), 1800);
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setStatus('sending');
 
-    // Build mailto link as simple contact method
     const subject = encodeURIComponent(form.subject || 'Portfolio Contact');
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    window.open(`mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`, '_self');
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+
+    window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
 
     setStatus('success');
-    setTimeout(() => {
+    window.setTimeout(() => {
       setStatus('idle');
       setForm({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    }, 2500);
   };
 
   return (
-    <SectionWrapper>
-      <div id="contact" className="scroll-mt-20">
+    <SectionWrapper className="section-shell">
+      <div id="contact" className="scroll-mt-24">
         <SectionHeading
-          title="Get in Touch"
-          subtitle="Have a project in mind or want to connect? I'd love to hear from you."
+          kicker="04 / Contact"
+          title="Clear, polished contact options"
+          subtitle="A simple way to reach me for internships, collaborations, and technical roles."
         />
 
         <div
           ref={ref}
-          className={`grid gap-10 lg:grid-cols-5 transition-all duration-700 ${
+          className={`grid gap-8 lg:grid-cols-[0.94fr_1.06fr] transition-all duration-700 ${
             visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* Contact info */}
-          <div className="lg:col-span-2 space-y-5">
-            {contactLinks.map(({ icon: Icon, label, value, href, copyable }) => (
-              <div
-                key={label}
-                className="flex items-center gap-4 rounded-xl border border-white/5 bg-surface-900/40 p-4 card-hover"
-              >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary-500/10 text-primary-400">
-                  <Icon size={20} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs text-gray-500">{label}</p>
-                  {href ? (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-gray-200 hover:text-primary-400 transition-colors truncate block"
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <p className="text-sm text-gray-200 truncate">{value}</p>
-                  )}
-                </div>
-                {copyable && (
-                  <button
-                    onClick={() => handleCopy(value)}
-                    className="p-2 text-gray-500 hover:text-primary-400 transition-colors"
-                    aria-label="Copy to clipboard"
+          <div className="space-y-4">
+            <div className="section-frame p-6">
+              <p className="section-kicker">Direct contact</p>
+              <h3 className="mt-3 text-2xl font-bold text-white">Let’s build something solid.</h3>
+              <p className="mt-3 text-sm leading-7 text-gray-400">
+                If you have a project, internship, or collaboration in mind, reach out through any
+                of the channels below or send a quick message.
+              </p>
+
+              <div className="mt-6 space-y-3">
+                {contactLinks.map(({ icon: Icon, label, value, href, copyable }) => (
+                  <div
+                    key={label}
+                    className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary-400/20"
                   >
-                    {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-                  </button>
-                )}
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-primary-300 shadow-[0_16px_35px_rgba(0,0,0,0.2)]">
+                      <Icon size={18} />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs uppercase tracking-[0.24em] text-gray-500">{label}</p>
+                      {href ? (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 block truncate text-sm font-medium text-gray-100 transition-colors group-hover:text-primary-200"
+                        >
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="mt-1 truncate text-sm font-medium text-gray-100">{value}</p>
+                      )}
+                    </div>
+
+                    {copyable && (
+                      <button
+                        onClick={() => handleCopy(value)}
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-primary-400/25 hover:text-white"
+                        aria-label="Copy email address"
+                      >
+                        {copied ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
+                      </button>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { label: 'Response style', value: 'Fast & focused' },
+                { label: 'Preferred work', value: 'Systems + Web' },
+              ].map((item) => (
+                <div key={item.label} className="section-frame p-5">
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-500">{item.label}</p>
+                  <p className="mt-2 text-lg font-semibold text-white">{item.value}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Contact form */}
           <form
             onSubmit={handleSubmit}
-            className="lg:col-span-3 rounded-2xl border border-white/5 bg-surface-900/40 p-6 md:p-8 space-y-5"
+            className="section-frame p-6 md:p-8"
           >
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="flex items-center justify-between gap-4">
               <div>
-                <label htmlFor="name" className="block text-sm text-gray-400 mb-1.5">
+                <p className="section-kicker">Send a message</p>
+                <h3 className="mt-2 text-2xl font-bold text-white">Start the conversation</h3>
+              </div>
+              <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-2xl border border-primary-400/20 bg-primary-500/10 text-primary-200">
+                <ArrowRight size={18} />
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-5 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className="mb-2 block text-sm text-gray-400">
                   Name
                 </label>
                 <input
@@ -144,12 +182,13 @@ export default function Contact() {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500/50 transition-colors"
+                  className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-all duration-300 focus:border-primary-400/40 focus:ring-2 focus:ring-primary-500/20"
                   placeholder="Your name"
                 />
               </div>
+
               <div>
-                <label htmlFor="email" className="block text-sm text-gray-400 mb-1.5">
+                <label htmlFor="email" className="mb-2 block text-sm text-gray-400">
                   Email
                 </label>
                 <input
@@ -158,14 +197,14 @@ export default function Contact() {
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500/50 transition-colors"
+                  className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-all duration-300 focus:border-primary-400/40 focus:ring-2 focus:ring-primary-500/20"
                   placeholder="you@example.com"
                 />
               </div>
             </div>
 
-            <div>
-              <label htmlFor="subject" className="block text-sm text-gray-400 mb-1.5">
+            <div className="mt-5">
+              <label htmlFor="subject" className="mb-2 block text-sm text-gray-400">
                 Subject
               </label>
               <input
@@ -174,45 +213,52 @@ export default function Contact() {
                 required
                 value={form.subject}
                 onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                className="w-full rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500/50 transition-colors"
-                placeholder="What's this about?"
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-all duration-300 focus:border-primary-400/40 focus:ring-2 focus:ring-primary-500/20"
+                placeholder="What would you like to discuss?"
               />
             </div>
 
-            <div>
-              <label htmlFor="message" className="block text-sm text-gray-400 mb-1.5">
+            <div className="mt-5">
+              <label htmlFor="message" className="mb-2 block text-sm text-gray-400">
                 Message
               </label>
               <textarea
                 id="message"
-                rows={5}
+                rows={6}
                 required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full resize-none rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500/50 transition-colors"
-                placeholder="Tell me about your project or just say hi..."
+                className="w-full resize-none rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-all duration-300 focus:border-primary-400/40 focus:ring-2 focus:ring-primary-500/20"
+                placeholder="Tell me about the role, project, or idea..."
               />
             </div>
 
             <button
               type="submit"
               disabled={status === 'sending' || status === 'success'}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 px-6 py-3 font-semibold text-white shadow-lg shadow-primary-600/25 hover:bg-primary-500 disabled:opacity-60 transition-all"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary-500 px-6 py-3.5 font-semibold text-white shadow-[0_18px_45px_rgba(99,102,241,0.28)] transition-all duration-300 hover:-translate-y-1 hover:bg-primary-400 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === 'success' ? (
                 <>
-                  <CheckCircle2 size={18} /> Message Sent!
+                  <CheckCircle2 size={18} />
+                  Message ready
                 </>
               ) : status === 'error' ? (
                 <>
-                  <AlertCircle size={18} /> Try Again
+                  <AlertCircle size={18} />
+                  Try again
                 </>
               ) : (
                 <>
-                  <Send size={18} /> Send Message
+                  <Send size={18} />
+                  Send Message
                 </>
               )}
             </button>
+
+            <p className="mt-4 text-center text-xs text-gray-500">
+              This opens your email client with the message prefilled.
+            </p>
           </form>
         </div>
       </div>

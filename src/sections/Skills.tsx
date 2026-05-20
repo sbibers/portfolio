@@ -1,30 +1,78 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { Code2, Database, Globe, Terminal, Layers3, Sparkles } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import SectionWrapper from '../components/SectionWrapper';
 import SectionHeading from '../components/SectionHeading';
 import { useInView } from '../hooks/useInView';
-import { TECH_ITEMS, TECH_CATEGORIES } from '../utils/constants';
+import { TECH_CATEGORIES, TECH_ITEMS } from '../utils/constants';
 import type { TechCategory } from '../utils/constants';
 
-function TechCard({ name, iconUrl, index, visible }: { name: string; iconUrl: string; index: number; visible: boolean }) {
+const CATEGORY_ICONS: Record<TechCategory, LucideIcon | undefined> = {
+  All: Sparkles,
+  Languages: Code2,
+  'Systems & Unix': Terminal,
+  'Tools & Frameworks': Globe,
+  Databases: Database,
+};
+
+function TechCard({
+  name,
+  iconUrl,
+  index,
+  visible,
+}: {
+  name: string;
+  iconUrl: string;
+  index: number;
+  visible: boolean;
+}) {
   return (
     <div
-      className={`group flex flex-col items-center justify-center gap-3 rounded-xl border border-white/[0.06] bg-surface-900/50 p-5 
-        hover:border-primary-500/30 hover:bg-surface-800/60 transition-all duration-500 cursor-default
-        ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-      style={{ transitionDelay: `${Math.min(index * 40, 600)}ms` }}
+      className={`tilt-card card-highlight group rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition-all duration-500 ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+      style={{ transitionDelay: `${Math.min(index * 35, 420)}ms` }}
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-800/60 p-2.5 group-hover:bg-gray-800 group-hover:scale-110 transition-all duration-300">
-        <img
-          src={iconUrl}
-          alt={name}
-          className="h-full w-full object-contain"
-          loading="lazy"
-        />
+      <div className="relative flex flex-col items-center gap-4 text-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/80 p-3 shadow-[0_18px_40px_rgba(0,0,0,0.28)] transition-all duration-300 group-hover:scale-110 group-hover:rotate-[-4deg]">
+          <img src={iconUrl} alt={name} className="h-full w-full object-contain" loading="lazy" />
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-white transition-colors group-hover:text-cyan-100">
+            {name}
+          </p>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.24em] text-gray-500">
+            Core tool
+          </p>
+        </div>
       </div>
-      <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors text-center">
-        {name}
-      </span>
     </div>
+  );
+}
+
+function CategoryChip({
+  active,
+  label,
+  onClick,
+  icon: Icon,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+  icon?: LucideIcon;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 ${
+        active
+          ? 'border-primary-400/40 bg-primary-500/15 text-primary-100 shadow-[0_16px_35px_rgba(99,102,241,0.2)]'
+          : 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:text-white'
+      }`}
+    >
+      {Icon && <Icon size={14} className="transition-transform duration-300 group-hover:scale-110" />}
+      {label}
+    </button>
   );
 }
 
@@ -32,49 +80,108 @@ export default function Skills() {
   const [active, setActive] = useState<TechCategory>('All');
   const [ref, visible] = useInView(0.05);
 
-  const filtered = active === 'All' ? TECH_ITEMS : TECH_ITEMS.filter((t) => t.category === active);
+  const filtered = useMemo(
+    () => (active === 'All' ? TECH_ITEMS : TECH_ITEMS.filter((item) => item.category === active)),
+    [active]
+  );
+
+  const categoryCounts = useMemo(
+    () =>
+      TECH_CATEGORIES.reduce<Record<string, number>>((acc, category) => {
+        acc[category] =
+          category === 'All'
+            ? TECH_ITEMS.length
+            : TECH_ITEMS.filter((item) => item.category === category).length;
+        return acc;
+      }, {}),
+    []
+  );
 
   return (
-    <SectionWrapper className="bg-surface-950/50">
-      <div id="skills" className="scroll-mt-20">
+    <SectionWrapper className="section-shell">
+      <div id="skills" className="scroll-mt-24">
         <SectionHeading
-          title="Skills & Technologies"
-          subtitle="The tools and technologies I use to bring ideas to life"
+          kicker="02 / Skills"
+          title="3D skill layers and technical depth"
+          subtitle="Clean categories, premium motion, and the stack I actually use."
         />
 
-        {/* Filter tabs */}
         <div
           ref={ref}
-          className={`flex flex-wrap gap-2 mb-10 transition-all duration-700 delay-100 ${
-            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          className={`transition-all duration-700 ${
+            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {TECH_CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 border ${
-                active === cat
-                  ? 'border-primary-500 bg-primary-500/15 text-primary-300 shadow-lg shadow-primary-500/10'
-                  : 'border-white/[0.06] bg-transparent text-gray-400 hover:text-white hover:border-white/10'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {TECH_CATEGORIES.map((category) => (
+              <CategoryChip
+                key={category}
+                active={active === category}
+                label={`${category} (${categoryCounts[category]})`}
+                onClick={() => setActive(category)}
+                icon={CATEGORY_ICONS[category]}
+              />
+            ))}
+          </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filtered.map((tech, i) => (
-            <TechCard
-              key={tech.name}
-              name={tech.name}
-              iconUrl={tech.iconUrl}
-              index={i}
-              visible={visible}
-            />
-          ))}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filtered.map((tech, index) => (
+              <TechCard
+                key={tech.name}
+                name={tech.name}
+                iconUrl={tech.iconUrl}
+                index={index}
+                visible={visible}
+              />
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              { label: 'Low-level', value: 'C / C++', text: 'Systems, memory, and performance-oriented work' },
+              { label: 'Frontend', value: 'React / TS', text: 'Responsive interfaces with modern tooling' },
+              { label: 'DevOps', value: 'Docker / Linux', text: 'Containerized workflows and Linux-first habits' },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="section-frame card-highlight p-5"
+              >
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-500">{item.label}</p>
+                <p className="mt-2 text-lg font-semibold text-white">{item.value}</p>
+                <p className="mt-2 text-sm leading-6 text-gray-400">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="section-frame mt-10 p-6">
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <Layers3 size={16} className="text-cyan-300" />
+              Skill depth
+            </div>
+            <div className="mt-5 grid gap-4">
+              {[
+                { label: 'Systems programming', value: 92 },
+                { label: 'Frontend development', value: 85 },
+                { label: 'Backend & databases', value: 80 },
+              ].map((skill, index) => (
+                <div key={skill.label} className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-300">{skill.label}</span>
+                    <span className="font-mono text-xs text-gray-500">{skill.value}%</span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-slate-900/90">
+                    <div
+                      className="skill-bar-fill h-full rounded-full bg-gradient-to-r from-primary-500 via-primary-400 to-cyan-400"
+                      style={{
+                        width: visible ? `${skill.value}%` : '0%',
+                        animationDelay: `${index * 120}ms`,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </SectionWrapper>

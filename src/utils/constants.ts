@@ -3,18 +3,17 @@ import type { NavLink, SkillCategory, TechItem } from '../types';
 export const PERSONAL_INFO = {
   name: 'Salam Baybars',
   firstName: 'Salam',
-  title: 'Systems Programmer & Software Developer',
+  title: 'CS Student • 42 Amman Graduate • Full-Stack & Systems Developer',
   email: 'salambaybars@gmail.com',
   github: 'https://github.com/sbibers',
   githubUsername: 'sbibers',
   linkedin: 'https://www.linkedin.com/in/salambaybars/',
   location: 'Zarqa, Jordan',
   cvUrl: '/Salam-Baybars-CV.pdf',
-  bio: `I'm a CS student at the University of Islamic Sciences and a 42 Amman graduate, part of the first team to complete the Core Curriculum. My expertise spans systems programming, networking, algorithms, and full-stack web development.`,
+  bio: `Computer Science student and 42 Amman graduate focused on systems programming, full-stack development, and clean, reliable software.`,
   aboutParagraphs: [
-    `As a Computer Science student and 42 Amman graduate, I bring a unique blend of academic foundation and intensive, project-based learning. At 42, I was part of the first team to complete the entire Core Curriculum, mastering complex concepts through peer-to-peer collaboration, code review, and real-world challenges.`,
-    `My expertise spans systems programming in C/C++, where I've built custom shells, raycasting engines, and sorting algorithm optimizers. I'm equally passionate about full-stack web development, having created real-time multiplayer platforms with React, ASP.NET, and PostgreSQL, as well as Docker-based infrastructure.`,
-    `I specialize in systems programming, networking, algorithms, and both backend and frontend development. I'm always pushing boundaries and seeking new technologies to master.`,
+    `I’m a Computer Science student and 42 Amman graduate with a strong foundation in systems programming, web development, and problem solving.`,
+    `I build with C/C++, JavaScript, TypeScript, React, Linux, Docker, and SQL, and I enjoy turning complex technical ideas into polished products.`,
   ],
 };
 
@@ -80,14 +79,14 @@ export const PERSONAL_PROJECTS = [
   {
     title: 'Multi-Pass Caesar Cipher',
     description:
-      'A complex Caesar cipher implementation in C++ that uses 5 different encryption passes (reverse, position-based shift, character dependency, odd/even formulas, pair swapping) to make the cipher significantly harder to break. Supports file I/O and automatic output filename generation.',
+      'A layered C++ encryption tool that applies several transformations to make classical Caesar-style cracking significantly harder. Includes file I/O and automated output naming.',
     technologies: ['C++', 'Cryptography', 'File I/O'],
     github: 'https://github.com/sbibers/multi-pass-caesar-cipher',
   },
   {
     title: 'World Clock App',
     description:
-      'An elegant, lightweight web application combining a real-time world clock, stopwatch with lap tracking, countdown timer with audio notifications, and session history, all built with vanilla JavaScript and zero dependencies.',
+      'A lightweight productivity app with a world clock, stopwatch, countdown timer, and session history, built with vanilla JavaScript and zero dependencies.',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Intl API', 'localStorage'],
     github: 'https://github.com/sbibers/world-clock-app',
     live: 'https://sbibers.github.io/world-clock-app/',
@@ -95,7 +94,7 @@ export const PERSONAL_PROJECTS = [
   {
     title: 'My Mini Server',
     description:
-      'A multi-client TCP chat server in C using select(2). Supports broadcast messaging, join/leave notices, robust partial-read buffering, and graceful shutdown via SIGINT. Single-threaded and fully leak-free.',
+      'A multi-client TCP chat server in C using select(2), with broadcast messaging, join/leave notices, buffered reads, and graceful shutdown handling.',
     technologies: ['C', 'TCP/IP', 'select(2)', 'POSIX'],
     github: 'https://github.com/sbibers/my_mini_server',
   },
@@ -105,42 +104,42 @@ export const FEATURED_PROJECTS = [
   {
     title: 'Inception',
     description:
-      'Docker infrastructure project setting up secure multi-service containers with Docker Compose, including Nginx, WordPress, and MariaDB.',
+      'Docker infrastructure project building a secure multi-service stack with Docker Compose, Nginx, WordPress, and MariaDB.',
     technologies: ['Docker', 'Docker Compose', 'Nginx', 'WordPress', 'MariaDB'],
     github: 'https://github.com/sbibers/inception',
   },
   {
     title: 'Minishell',
     description:
-      'A custom Unix shell built in C, implementing pipes, redirections, environment variables, built-in commands, and signal handling.',
+      'A custom Unix shell in C with pipes, redirections, environment variables, built-ins, and signal handling.',
     technologies: ['C', 'Unix', 'Bash'],
     github: 'https://github.com/sbibers/minishell',
   },
   {
     title: 'Push Swap',
     description:
-      'Sorting algorithm optimization challenge, sorting a stack using the minimum number of operations with efficient algorithmic strategies.',
+      'Sorting optimization challenge focused on minimizing stack operations with efficient algorithmic strategies.',
     technologies: ['C', 'Algorithms', 'Sorting'],
     github: 'https://github.com/sbibers/push_swap',
   },
   {
     title: 'Cub3D',
     description:
-      'A 3D raycasting engine inspired by Wolfenstein 3D, rendering a 3D maze from a 2D map using the MiniLibX graphics library.',
+      'A 3D raycasting engine inspired by Wolfenstein 3D, rendering a maze from a 2D map using MiniLibX.',
     technologies: ['C', 'Raycasting', 'MiniLibX'],
     github: 'https://github.com/sbibers/cub3d',
   },
   {
     title: 'CPP Modules (00–09)',
     description:
-      'Comprehensive C++ projects covering OOP, templates, STL, Bitcoin Exchange, RPN Calculator, and Merge-Insert Sort.',
+      'A broad set of C++ projects covering OOP, templates, STL, Bitcoin Exchange, RPN Calculator, and Merge-Insert Sort.',
     technologies: ['C++', 'OOP', 'STL', 'Templates'],
     github: 'https://github.com/sbibers/CPP_modules_42',
   },
   {
     title: 'Libft',
     description:
-      'Custom C library reimplementing standard functions, including ft_printf and get_next_line, the foundation for all 42 projects.',
+      'A custom C library reimplementing standard functions, ft_printf, and get_next_line—the base of all 42 projects.',
     technologies: ['C', 'Makefile', 'Library'],
     github: 'https://github.com/sbibers/libft',
   },

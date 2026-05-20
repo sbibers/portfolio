@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ExternalLink, Github, Star, GitFork, Loader2 } from 'lucide-react';
+import { ExternalLink, Github, Star, GitFork, Loader2, Sparkles, Layers3, ArrowRight } from 'lucide-react';
 import SectionWrapper from '../components/SectionWrapper';
 import SectionHeading from '../components/SectionHeading';
 import { useInView } from '../hooks/useInView';
@@ -7,13 +7,14 @@ import { fetchGitHubRepos } from '../utils/github';
 import { FEATURED_PROJECTS, PERSONAL_PROJECTS, LANGUAGE_COLORS } from '../utils/constants';
 import type { GitHubRepo } from '../types';
 
-function FeaturedCard({
+function ProjectCard({
   title,
   description,
   technologies,
   github,
   live,
   index,
+  accent = 'primary',
 }: {
   title: string;
   description: string;
@@ -21,59 +22,73 @@ function FeaturedCard({
   github: string;
   live?: string;
   index: number;
+  accent?: 'primary' | 'cyan';
 }) {
-  const [ref, visible] = useInView(0.1);
+  const [ref, visible] = useInView(0.08);
+
+  const accentClass =
+    accent === 'cyan'
+      ? 'from-cyan-400/20 via-cyan-400/10 to-transparent'
+      : 'from-primary-500/20 via-primary-500/10 to-transparent';
 
   return (
-    <div
+    <article
       ref={ref}
-      className={`group rounded-2xl border border-white/5 bg-surface-900/40 p-6 card-hover transition-all duration-700 ${
+      className={`tilt-card card-highlight group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition-all duration-500 ${
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      style={{ transitionDelay: `${index * 90}ms` }}
     >
-      {/* Header accent */}
-      <div className="mb-4 h-1 w-12 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300 group-hover:w-20" />
-
-      <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-      <p className="text-sm text-gray-400 leading-relaxed mb-4">{description}</p>
-
-      {/* Tech tags */}
-      <div className="flex flex-wrap gap-2 mb-5">
-        {technologies.map((tech) => (
-          <span
-            key={tech}
-            className="rounded-full border border-primary-500/20 bg-primary-500/5 px-3 py-1 text-xs font-medium text-primary-300"
-          >
-            {tech}
+      <div className={`absolute inset-0 bg-gradient-to-br ${accentClass} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
+      <div className="relative">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/70 px-3 py-1 text-[11px] uppercase tracking-[0.28em] text-gray-400">
+            <Sparkles size={12} className={accent === 'cyan' ? 'text-cyan-300' : 'text-primary-300'} />
+            Project
           </span>
-        ))}
-      </div>
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/70 text-primary-300 shadow-[0_16px_35px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:rotate-[-8deg] group-hover:scale-110">
+            <Layers3 size={18} />
+          </span>
+        </div>
 
-      <div className="flex items-center gap-4">
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors"
-        >
-          <Github size={16} />
-          View Code
-          <ExternalLink size={14} />
-        </a>
-        {live && (
+        <h3 className="text-xl font-bold text-white">{title}</h3>
+        <p className="mt-3 text-sm leading-7 text-gray-400">{description}</p>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {technologies.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-1 text-xs font-medium text-gray-300 transition-all duration-300 group-hover:border-primary-400/20 group-hover:text-white"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3">
           <a
-            href={live}
+            href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-accent-400 transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-gray-200 transition-all duration-300 hover:-translate-y-1 hover:border-primary-400/30 hover:text-white"
           >
-            <ExternalLink size={14} />
-            Live Demo
+            <Github size={16} />
+            View Code
           </a>
-        )}
+          {live && (
+            <a
+              href={live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-4 py-2.5 text-sm font-semibold text-white shadow-[0_16px_35px_rgba(99,102,241,0.25)] transition-all duration-300 hover:-translate-y-1 hover:bg-primary-400"
+            >
+              <ExternalLink size={16} />
+              Live Demo
+            </a>
+          )}
+        </div>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -85,31 +100,35 @@ function RepoCard({ repo }: { repo: GitHubRepo }) {
       href={repo.html_url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group rounded-xl border border-white/5 bg-surface-900/30 p-5 card-hover block"
+      className="tilt-card card-highlight group rounded-[1.4rem] border border-white/10 bg-white/5 p-5 transition-all duration-300"
     >
-      <h4 className="text-base font-semibold text-white group-hover:text-primary-400 transition-colors truncate">
-        {repo.name}
-      </h4>
-      <p className="mt-1.5 text-sm text-gray-500 line-clamp-2 h-10">
-        {repo.description || 'No description'}
-      </p>
-      <div className="mt-4 flex items-center gap-4 text-xs text-gray-500">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h4 className="truncate text-base font-semibold text-white transition-colors group-hover:text-primary-200">
+            {repo.name}
+          </h4>
+          <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-400">
+            {repo.description || 'No description provided.'}
+          </p>
+        </div>
+        <ExternalLink size={14} className="mt-1 shrink-0 text-gray-600 transition-colors group-hover:text-primary-300" />
+      </div>
+
+      <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-gray-500">
         {repo.language && (
-          <span className="flex items-center gap-1.5">
+          <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />
             {repo.language}
           </span>
         )}
-        {repo.stargazers_count > 0 && (
-          <span className="flex items-center gap-1">
-            <Star size={12} /> {repo.stargazers_count}
-          </span>
-        )}
-        {repo.forks_count > 0 && (
-          <span className="flex items-center gap-1">
-            <GitFork size={12} /> {repo.forks_count}
-          </span>
-        )}
+        <span className="inline-flex items-center gap-1.5">
+          <Star size={12} />
+          {repo.stargazers_count}
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <GitFork size={12} />
+          {repo.forks_count}
+        </span>
       </div>
     </a>
   );
@@ -118,77 +137,90 @@ function RepoCard({ repo }: { repo: GitHubRepo }) {
 export default function Projects() {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
+  const [ref, visible] = useInView(0.08);
 
   useEffect(() => {
     fetchGitHubRepos()
       .then((r) => setRepos(r.slice(0, 6)))
-      .catch(() => {})
+      .catch(() => setRepos([]))
       .finally(() => setLoading(false));
   }, []);
 
   return (
-    <SectionWrapper>
-      <div id="projects" className="scroll-mt-20">
+    <SectionWrapper className="section-shell">
+      <div id="projects" className="scroll-mt-24">
         <SectionHeading
-          title="Projects"
-          subtitle="A selection of projects I've worked on"
+          kicker="03 / Projects"
+          title="Premium projects with depth"
+          subtitle="Selected work, presented like a high-end product portfolio."
         />
 
-        {/* Personal projects */}
-        <h3 className="mb-6 text-lg font-semibold text-gray-300 flex items-center gap-2">
-          <span className="h-px flex-1 bg-gray-800" />
-          <span>Personal Projects</span>
-          <span className="h-px flex-1 bg-gray-800" />
-        </h3>
-        <div className="grid gap-6 sm:grid-cols-2 mb-16">
-          {PERSONAL_PROJECTS.map((project, i) => (
-            <FeaturedCard key={project.title} {...project} index={i} />
-          ))}
-        </div>
-
-        {/* 42 projects */}
-        <h3 className="mb-6 text-lg font-semibold text-gray-300 flex items-center gap-2">
-          <span className="h-px flex-1 bg-gray-800" />
-          <span>42 Projects</span>
-          <span className="h-px flex-1 bg-gray-800" />
-        </h3>
-        <div className="grid gap-6 sm:grid-cols-2 mb-16">
-          {FEATURED_PROJECTS.map((project, i) => (
-            <FeaturedCard key={project.title} {...project} index={i} />
-          ))}
-        </div>
-
-        {/* GitHub repos */}
-        <h3 className="mb-6 text-lg font-semibold text-gray-300 flex items-center gap-2">
-          <span className="h-px flex-1 bg-gray-800" />
-          <span>GitHub Repositories</span>
-          <span className="h-px flex-1 bg-gray-800" />
-        </h3>
-
-        {loading ? (
-          <div className="flex justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-primary-400" />
-          </div>
-        ) : repos.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {repos.map((repo) => (
-              <RepoCard key={repo.id} repo={repo} />
+        <div
+          ref={ref}
+          className={`transition-all duration-700 ${
+            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="mb-8 grid gap-6 lg:grid-cols-2">
+            {PERSONAL_PROJECTS.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                {...project}
+                index={index}
+                accent={index % 2 === 0 ? 'primary' : 'cyan'}
+              />
             ))}
           </div>
-        ) : (
-          <p className="text-center text-gray-500 py-8">
-            Could not load repositories. Visit my{' '}
-            <a
-              href="https://github.com/sbibers"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary-400 hover:underline"
-            >
-              GitHub profile
-            </a>{' '}
-            directly.
-          </p>
-        )}
+
+          <div className="mb-10 grid gap-6 lg:grid-cols-2">
+            {FEATURED_PROJECTS.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                {...project}
+                index={index}
+                accent={index % 2 === 0 ? 'cyan' : 'primary'}
+              />
+            ))}
+          </div>
+
+          <div className="section-frame p-6 md:p-8">
+            <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="section-kicker">GitHub</p>
+                <h3 className="mt-2 text-2xl font-bold text-white">Recent repositories</h3>
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-gray-400">
+                  A lightweight snapshot of recent activity with language signals and repo stats.
+                </p>
+              </div>
+              <a
+                href="https://github.com/sbibers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-gray-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary-400/25 hover:text-white"
+              >
+                <Github size={16} />
+                View profile
+                <ArrowRight size={16} />
+              </a>
+            </div>
+
+            {loading ? (
+              <div className="flex justify-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-primary-300" />
+              </div>
+            ) : repos.length > 0 ? (
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {repos.map((repo) => (
+                  <RepoCard key={repo.id} repo={repo} />
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-6 text-center text-sm text-gray-400">
+                Could not load repositories right now. Open my GitHub profile directly.
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </SectionWrapper>
   );
