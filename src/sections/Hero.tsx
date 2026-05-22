@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { PERSONAL_INFO } from '../utils/constants';
-import cvFile from '../assets/Salam_Baybars_CV_2026.pdf';
+import cvFile from '../assets/Salam_Baybars_CV_Full_Stack.pdf';
 
 const quickStats = [
   { value: '42', label: 'Amman Graduate' },
@@ -101,7 +101,7 @@ export default function Hero() {
             loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          <p className="section-kicker text-cyan-200/80 reveal-down">Computer Science Student</p>
+          <p className="section-kicker text-cyan-200/80 reveal-down">42 AMMAN GRADUATE | Computer Science Student</p>
 
           <h1 className="mt-4 max-w-4xl text-5xl font-black text-white text-glow sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
             <span className="block">Salam</span>
@@ -155,7 +155,7 @@ export default function Hero() {
 
             <a
               href={cvFile}
-              download="Salam_Baybars_CV_2026.pdf"
+              download="Salam_Baybars_CV_Full_Stack.pdf"
               className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-6 py-3.5 font-semibold text-cyan-100 transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-400/15 hover:text-white"
             >
               <Download size={16} />
